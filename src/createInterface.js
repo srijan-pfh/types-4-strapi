@@ -49,7 +49,7 @@ module.exports = (schemaPath, interfaceName) => {
         attributeValue.target === 'plugin::users-permissions.user'
           ? 'User'
           : pascalCase(attributeValue.component.split('.')[1]);
-      const path = kebabCase(attributeValue.target.split('.')[1]);
+      const path = kebabCase(attributeValue.component.split('.')[1]);
       const tsImportPath = `./components/${path}`;
       if (tsImports.every((x) => x.path !== tsImportPath))
         tsImports.push({
