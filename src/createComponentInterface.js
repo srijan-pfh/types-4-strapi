@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { pascalCase, isOptional } = require('./utils');
+const { pascalCase, isOptional, kebabCase } = require('./utils');
 
 module.exports = (schemaPath, interfaceName) => {
   var tsImports = [];
