@@ -29,7 +29,8 @@ module.exports = (schemaPath, interfaceName) => {
       tsType = attributeValue.target.includes('::user')
         ? 'User'
         : `${pascalCase(attributeValue.target.split('.')[1])}`;
-      const tsImportPath = `../${tsType}`;
+      const path = kebabCase(attributeValue.target.split('.')[1]);
+      const tsImportPath = `../${path}`;
       if (tsImports.every((x) => x.path !== tsImportPath))
         tsImports.push({
           type: tsType,
@@ -47,7 +48,8 @@ module.exports = (schemaPath, interfaceName) => {
         attributeValue.target === 'plugin::users-permissions.user'
           ? 'User'
           : pascalCase(attributeValue.component.split('.')[1]);
-      var tsImportPath = `./${tsType}`;
+      const path = kebabCase(attributeValue.target.split('.')[1]);
+      var tsImportPath = `./${path}`;
       if (tsImports.every((x) => x.path !== tsImportPath))
         tsImports.push({
           type: tsType,
@@ -62,7 +64,7 @@ module.exports = (schemaPath, interfaceName) => {
     // -------------------------------------------------
     else if (attributeValue.type === 'media') {
       tsType = 'Media';
-      const tsImportPath = '../Media';
+      const tsImportPath = '../media.interface';
       if (tsImports.every((x) => x.path !== tsImportPath))
         tsImports.push({
           type: tsType,
@@ -146,9 +148,9 @@ module.exports = (schemaPath, interfaceName) => {
   }
   tsInterface += '};\n';
   for (const tsImport of tsImports) {
-    const path = kebabCase(tsImport.path);
     tsInterface =
-      `import { ${tsImport.type} } from '${path}.interface';\n` + tsInterface;
+      `import { ${tsImport.type} } from '${tsImport.path}.interface';\n` +
+      tsInterface;
   }
   return tsInterface;
 };
