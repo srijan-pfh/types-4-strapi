@@ -113,13 +113,17 @@ try {
 
 if (apiFolders)
   for (const apiFolder of apiFolders) {
-    const interfaceName = kebabCase(apiFolder);
+    const interfaceName = pascalCase(apiFolder);
+    const interfaceFileName = kebabCase(apiFolder);
     const interface = createInterface(
       `./src/api/${apiFolder}/content-types/${apiFolder}/schema.json`,
       interfaceName
     );
     if (interface)
-      fs.writeFileSync(`${typesDir}/${interfaceName}.interface.ts`, interface);
+      fs.writeFileSync(
+        `${typesDir}/${interfaceFileName}.interface.ts`,
+        interface
+      );
   }
 
 // --------------------------------------------
@@ -144,13 +148,14 @@ if (componentCategoryFolders) {
     );
     for (const componentSchema of componentSchemas) {
       const interfaceName = pascalCase(componentSchema.replace('.json', ''));
+      const interfaceFileName = kebabCase(componentSchema.replace('.json', ''));
       const interface = createComponentInterface(
         `./src/components/${componentCategoryFolder}/${componentSchema}`,
         interfaceName
       );
       if (interface)
         fs.writeFileSync(
-          `${targetFolder}/${interfaceName}.interface.ts`,
+          `${targetFolder}/${interfaceFileName}.interface.ts`,
           interface
         );
     }

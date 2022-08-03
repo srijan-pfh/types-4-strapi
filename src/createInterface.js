@@ -164,7 +164,7 @@ module.exports = (schemaPath, interfaceName) => {
   tsInterface += '};\n';
   for (const tsImport of tsImports) {
     tsInterface =
-      `import { ${tsImport.type} } from '${tsImport.path.interface}';\n` +
+      `import { ${tsImport.type} } from '${tsImport.path}.interface';\n` +
       tsInterface;
   }
   return tsInterface;
