@@ -144,10 +144,11 @@ module.exports = (schemaPath, interfaceName) => {
     }
     tsInterface += tsProperty;
   }
-  tsInterface += '}\n';
+  tsInterface += '};\n';
   for (const tsImport of tsImports) {
     tsInterface =
-      `import { ${tsImport.type} } from '${tsImport.path}';\n` + tsInterface;
+      `import { ${tsImport.type} } from '${tsImport.path}.interface';\n` +
+      tsInterface;
   }
   return tsInterface;
 };

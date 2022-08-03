@@ -3,7 +3,7 @@
 const fs = require('fs');
 const createInterface = require('./createInterface');
 const createComponentInterface = require('./createComponentInterface');
-const { pascalCase, isOptional } = require('./utils');
+const { kebabCase, isOptional, pascalCase } = require('./utils');
 
 const typesDir = 'types';
 
@@ -26,7 +26,7 @@ const payloadTsInterface = `export interface Payload<T> {
 }
 `;
 
-fs.writeFileSync(`${typesDir}/Payload.ts`, payloadTsInterface);
+fs.writeFileSync(`${typesDir}/payload.interface.ts`, payloadTsInterface);
 
 // --------------------------------------------
 // User
@@ -46,7 +46,7 @@ const userTsInterface = `export interface User {
 }
 `;
 
-fs.writeFileSync(`${typesDir}/User.ts`, userTsInterface);
+fs.writeFileSync(`${typesDir}/user.interface.ts`, userTsInterface);
 
 // --------------------------------------------
 // MediaFormat
@@ -65,13 +65,16 @@ var mediaFormatTsInterface = `export interface MediaFormat {
 }
 `;
 
-fs.writeFileSync(`${typesDir}/MediaFormat.ts`, mediaFormatTsInterface);
+fs.writeFileSync(
+  `${typesDir}/media-format.interface.ts`,
+  mediaFormatTsInterface
+);
 
 // --------------------------------------------
 // Media
 // --------------------------------------------
 
-var mediaTsInterface = `import { MediaFormat } from './MediaFormat';
+var mediaTsInterface = `import { MediaFormat } from './media-format.interface';
 
 export interface Media {
   id: number;
@@ -95,7 +98,7 @@ export interface Media {
 }
 `;
 
-fs.writeFileSync(`${typesDir}/Media.ts`, mediaTsInterface);
+fs.writeFileSync(`${typesDir}/media.interface.ts`, mediaTsInterface);
 
 // --------------------------------------------
 // API Types
@@ -110,13 +113,13 @@ try {
 
 if (apiFolders)
   for (const apiFolder of apiFolders) {
-    const interfaceName = pascalCase(apiFolder);
+    const interfaceName = kebabCase(apiFolder);
     const interface = createInterface(
       `./src/api/${apiFolder}/content-types/${apiFolder}/schema.json`,
       interfaceName
     );
     if (interface)
-      fs.writeFileSync(`${typesDir}/${interfaceName}.ts`, interface);
+      fs.writeFileSync(`${typesDir}/${interfaceName}.interface.ts`, interface);
   }
 
 // --------------------------------------------
@@ -146,7 +149,10 @@ if (componentCategoryFolders) {
         interfaceName
       );
       if (interface)
-        fs.writeFileSync(`${targetFolder}/${interfaceName}.ts`, interface);
+        fs.writeFileSync(
+          `${targetFolder}/${interfaceName}.interface.ts`,
+          interface
+        );
     }
   }
 }
