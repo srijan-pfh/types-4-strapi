@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { pascalCase, isOptional } = require('./utils');
+const { pascalCase, isOptional, kebabCase } = require('./utils');
 
 module.exports = (schemaPath, interfaceName) => {
   var tsImports = [];
@@ -163,9 +163,9 @@ module.exports = (schemaPath, interfaceName) => {
   tsInterface += `  };\n`;
   tsInterface += '};\n';
   for (const tsImport of tsImports) {
+    const path = kebabCase(tsImport.path);
     tsInterface =
-      `import { ${tsImport.type} } from '${tsImport.path}.interface';\n` +
-      tsInterface;
+      `import { ${tsImport.type} } from '${path}.interface';\n` + tsInterface;
   }
   return tsInterface;
 };
