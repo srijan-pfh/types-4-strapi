@@ -3,7 +3,11 @@ module.exports.pascalCase = (str) => {
   const words = str.match(/[a-z]+/gi);
   return words
     .map(
-      (word) => word.charAt(0).toUpperCase() + word.substring(1).toLowerCase()
+      (word) =>
+        'I' +
+        word.charAt(0).toUpperCase() +
+        word.substring(1).toLowerCase() +
+        'Response'
     )
     .join('');
 };
