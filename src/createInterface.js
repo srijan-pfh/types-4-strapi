@@ -6,7 +6,6 @@ module.exports = (schemaPath, interfaceName) => {
   var tsInterface = `\n`;
   tsInterface += `export interface ${interfaceName} {\n`;
   tsInterface += `  id: number;\n`;
-  tsInterface += `  attributes: {\n`;
   var schemaFile;
   var schema;
   try {
