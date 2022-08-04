@@ -74,7 +74,7 @@ fs.writeFileSync(
 // Media
 // --------------------------------------------
 
-var mediaTsInterface = `import { MediaFormat } from './media-format.interface';
+var mediaTsInterface = `import { IMediaFormatResponse } from './media-format.interface';
 
 export interface IMediaResponse {
   id: number;
@@ -84,7 +84,7 @@ export interface IMediaResponse {
     caption: string;
     width: number;
     height: number;
-    formats: { thumbnail: MediaFormat; medium: MediaFormat; small: MediaFormat; };
+    formats: { thumbnail: IMediaFormatResponse; medium: MediaFormat; small: MediaFormat; };
     hash: string;
     ext: string;
     mime: string;
