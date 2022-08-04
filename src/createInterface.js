@@ -162,7 +162,6 @@ module.exports = (schemaPath, interfaceName) => {
     tsInterface += `    localizations?: { data: ${interfaceName}[] }\n`;
   }
   tsInterface += `  };\n`;
-  tsInterface += '};\n';
   for (const tsImport of tsImports) {
     tsInterface =
       `import { ${tsImport.type} } from '${tsImport.path}.interface';\n` +
