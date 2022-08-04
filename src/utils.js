@@ -1,15 +1,12 @@
 module.exports.pascalCase = (str) => {
   if (!str) return;
   const words = str.match(/[a-z]+/gi);
-  return words
+  const word = words
     .map(
-      (word) =>
-        'I' +
-        word.charAt(0).toUpperCase() +
-        word.substring(1).toLowerCase() +
-        'Response'
+      (word) => word.charAt(0).toUpperCase() + word.substring(1).toLowerCase()
     )
     .join('');
+  return `I${word}Response`;
 };
 
 module.exports.kebabCase = (str) => {
