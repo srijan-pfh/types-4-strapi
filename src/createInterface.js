@@ -38,7 +38,7 @@ module.exports = (schemaPath, interfaceName) => {
         });
       const isArray = attributeValue.relation.endsWith('ToMany');
       const bracketsIfArray = isArray ? '[]' : '';
-      tsProperty = `${attributeName}: { data: ${tsPropertyType}${bracketsIfArray} };\n`;
+      tsProperty = `${attributeName}: ${tsPropertyType}${bracketsIfArray};\n`;
     }
     // -------------------------------------------------
     // Component
@@ -78,9 +78,9 @@ module.exports = (schemaPath, interfaceName) => {
           type: tsPropertyType,
           path: tsImportPath,
         });
-      tsProperty = `  ${attributeName}: { data: ${tsPropertyType}${
+      tsProperty = `  ${attributeName}: ${tsPropertyType}${
         attributeValue.multiple ? '[]' : ''
-      } };\n`;
+      };\n`;
     }
     // -------------------------------------------------
     // Enumeration
@@ -159,7 +159,7 @@ module.exports = (schemaPath, interfaceName) => {
   // -------------------------------------------------
   if (schema.pluginOptions?.i18n?.localized) {
     tsInterface += `    locale: string;\n`;
-    tsInterface += `    localizations?: { data: ${interfaceName}[] }\n`;
+    tsInterface += `    localizations?: ${interfaceName}[]\n`;
   }
   tsInterface += `  };\n`;
   for (const tsImport of tsImports) {
