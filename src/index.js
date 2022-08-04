@@ -84,7 +84,7 @@ export interface IMediaResponse {
     caption: string;
     width: number;
     height: number;
-    formats: { thumbnail: IMediaFormatResponse; medium: MediaFormat; small: MediaFormat; };
+    formats: { thumbnail: IMediaFormatResponse; medium: IMediaFormatResponse; small: IMediaFormatResponse; };
     hash: string;
     ext: string;
     mime: string;
