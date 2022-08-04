@@ -34,15 +34,13 @@ fs.writeFileSync(`${typesDir}/response.interface.ts`, responseTsInterface);
 
 const userTsInterface = `export interface IUserResponse {
   id: number;
-  attributes: {
-    username: string;
-    email: string;
-    provider: string;
-    confirmed: boolean;
-    blocked: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-  }
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 `;
 
@@ -78,23 +76,21 @@ var mediaTsInterface = `import { IMediaFormatResponse } from './media-format.int
 
 export interface IMediaResponse {
   id: number;
-  attributes: {
-    name: string;
-    alternativeText: string;
-    caption: string;
-    width: number;
-    height: number;
-    formats: { thumbnail: IMediaFormatResponse; medium: IMediaFormatResponse; small: IMediaFormatResponse; };
-    hash: string;
-    ext: string;
-    mime: string;
-    size: number;
-    url: string;
-    previewUrl: string;
-    provider: string;
-    createdAt: Date;
-    updatedAt: Date;
-  }
+  name: string;
+  alternativeText: string;
+  caption: string;
+  width: number;
+  height: number;
+  formats: { thumbnail: IMediaFormatResponse; medium: IMediaFormatResponse; small: IMediaFormatResponse; };
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: string;
+  provider: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 `;
 

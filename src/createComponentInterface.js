@@ -38,7 +38,7 @@ module.exports = (schemaPath, interfaceName) => {
         });
       const isArray = attributeValue.relation === 'oneToMany';
       const bracketsIfArray = isArray ? '[]' : '';
-      tsProperty = `  ${attributeName}: { data: ${tsType}${bracketsIfArray} };\n`;
+      tsProperty = `${attributeName}: { data: ${tsType}${bracketsIfArray} };\n`;
     }
     // -------------------------------------------------
     // Component
@@ -57,7 +57,7 @@ module.exports = (schemaPath, interfaceName) => {
         });
       const isArray = attributeValue.repeatable;
       const bracketsIfArray = isArray ? '[]' : '';
-      tsProperty = `  ${attributeName}: ${tsType}${bracketsIfArray};\n`;
+      tsProperty = `${attributeName}: ${tsType}${bracketsIfArray};\n`;
     }
     // -------------------------------------------------
     // Media
@@ -70,7 +70,7 @@ module.exports = (schemaPath, interfaceName) => {
           type: tsType,
           path: tsImportPath,
         });
-      tsProperty = `  ${attributeName}: { data: ${tsType}${
+      tsProperty = `${attributeName}: { data: ${tsType}${
         attributeValue.multiple ? '[]' : ''
       } };\n`;
     }
@@ -79,7 +79,7 @@ module.exports = (schemaPath, interfaceName) => {
     // -------------------------------------------------
     else if (attributeValue.type === 'enumeration') {
       const enumOptions = attributeValue.enum.map((v) => `'${v}'`).join(' | ');
-      tsProperty = `  ${attributeName}: ${enumOptions};\n`;
+      tsProperty = `${attributeName}: ${enumOptions};\n`;
     }
     // -------------------------------------------------
     // Text, RichText, Email, UID
@@ -92,14 +92,14 @@ module.exports = (schemaPath, interfaceName) => {
       attributeValue.type === 'uid'
     ) {
       tsType = 'string';
-      tsProperty = `  ${attributeName}: ${tsType};\n`;
+      tsProperty = `${attributeName}: ${tsType};\n`;
     }
     // -------------------------------------------------
     // Json
     // -------------------------------------------------
     else if (attributeValue.type === 'json') {
       tsType = 'any';
-      tsProperty = `  ${attributeName}: ${tsType};\n`;
+      tsProperty = `${attributeName}: ${tsType};\n`;
     }
     // -------------------------------------------------
     // Password
@@ -117,7 +117,7 @@ module.exports = (schemaPath, interfaceName) => {
       attributeValue.type === 'float'
     ) {
       tsType = 'number';
-      tsProperty = `  ${attributeName}: ${tsType};\n`;
+      tsProperty = `${attributeName}: ${tsType};\n`;
     }
     // -------------------------------------------------
     // Date
@@ -128,21 +128,21 @@ module.exports = (schemaPath, interfaceName) => {
       attributeValue.type === 'time'
     ) {
       tsType = 'Date';
-      tsProperty = `  ${attributeName}: ${tsType};\n`;
+      tsProperty = `${attributeName}: ${tsType};\n`;
     }
     // -------------------------------------------------
     // Boolean
     // -------------------------------------------------
     else if (attributeValue.type === 'boolean') {
       tsType = 'boolean';
-      tsProperty = `  ${attributeName}: ${tsType};\n`;
+      tsProperty = `${attributeName}: ${tsType};\n`;
     }
     // -------------------------------------------------
     // Others
     // -------------------------------------------------
     else {
       tsType = 'any';
-      tsProperty = `  ${attributeName}: ${tsType};\n`;
+      tsProperty = `${attributeName}: ${tsType};\n`;
     }
     tsInterface += tsProperty;
   }
